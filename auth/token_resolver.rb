@@ -10,12 +10,12 @@ module Iform
     OAUTH = '/exzact/api/oauth/token'
 
     def get_token url, client, secert
-      request url, params
+      request url, params(client, secert, url)
     end
 
     private
 
-    def params
+    def params client, secert, url
       {
         grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',
         assertion:sign_assertion(client, secert, url)
